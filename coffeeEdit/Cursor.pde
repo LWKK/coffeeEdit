@@ -1,5 +1,5 @@
 class Cursor{
- int x,y,startBlink,startDelay; 
+ int x,y,startBlink,startDelay,lineClicked; 
  boolean displayed;
  Engine e;
   
@@ -38,7 +38,12 @@ class Cursor{
  void setPos(){
    if(mousePressed){
     x = mouseX;
-    y = mouseY;
+   // y = mouseY;
+    
+   if(mouseY > e.textSize*e.lineCounter){
+    y = e.lines.get(e.lineCounter-1).y-e.textSize; 
+   }
+    
    }
    
  }
