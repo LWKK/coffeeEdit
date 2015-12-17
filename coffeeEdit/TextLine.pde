@@ -18,6 +18,7 @@ class TextLine{
   void handleKeys(){
   if(key == BACKSPACE && letters.length() > 0){
     letters = letters.substring(0,letters.length()-1);
+    letterCounter --;
   }
   else if (letterCounter < lettersAcross){
     letters += key;
@@ -28,9 +29,21 @@ class TextLine{
 }
 
 void display(){
+  //newLine();
   textSize(e.textSize);
   fill(0);
   text(letters,10,y);
+}
+
+
+
+void newLine(){
+ if(letterCounter == lettersAcross && keyPressed){
+   e.lines.add(new TextLine(e,y+e.textSize+3));
+   println("NEWLINE");
+   
+ }
+  
 }
   
   
