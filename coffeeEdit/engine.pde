@@ -8,7 +8,7 @@ class Engine{
   Engine(){
   lines.add(new TextLine(this,textSize + 10));
   c = new Cursor(this,0,textSize+10);
-  font = createFont("consola.ttf",textSize);
+  font = createFont("VGAFIX.FON",textSize);
   textFont(font);
   }
 
