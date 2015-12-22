@@ -1,9 +1,10 @@
+import controlP5.*;
 Engine e;
 
 void setup(){
  //size(displayWidth,displayHeight);
  size(400,400);
- e = new Engine();
+ e = new Engine(this);
  //orientation(PORTRAIT);
 }
 

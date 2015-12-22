@@ -10,17 +10,19 @@ class CoffeeSteam{
   float[] dx = new float[maxwaves];          // Value for incrementing X, to be calculated as a function of period and xspacing
   float[] yvalues;                           // Using an array to store height values for the wave (not entirely necessary)
   int startX,endX;
+  int midline;
   
-  CoffeeSteam(int startX_,int endX_){
+  CoffeeSteam(int startX_,int endX_,int mid){
     w = width + 16;
   for (int i = 0; i < maxwaves; i++) {
-    amplitude[i] = random(10,12);
+    amplitude[i] = random(8,12);
     float period = random(100,300); // How many pixels before the wave repeats
     dx[i] = (TWO_PI / period) * xspacing;
   }
   yvalues = new float[w/xspacing];
   startX = startX_;
   endX = endX_;
+  midline = mid;
     
   }
   
@@ -59,11 +61,12 @@ void calcWave() {
 void renderWave() {
   // A simple way to draw the wave with an ellipse at each location
   noStroke();
-  fill(139,69,19);
   ellipseMode(CENTER);
   for (int x = 0; x < yvalues.length; x++) {
-    //ellipse(x*xspacing,height/2+yvalues[x],16,16);
-    ellipse(height/2+yvalues[x],x*xspacing,7,7);
+    float alpha = dist(0,x*xspacing,0,endX);
+    fill(139,69,19,alpha);
+    ellipse(midline+yvalues[x],x*xspacing,4,4);
+    
     
   }
 
