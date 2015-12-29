@@ -4,10 +4,12 @@ class MainMenu{
  CoffeeSteam cs1, cs2;
  Engine e;
  boolean aboutPressed = false;
+ Button openFile;
  
  
  MainMenu(Engine e_){
    e = e_;
+   openFile = new Button(200,200,100,40,color(30,122,78),color(130,55,20),"OPEN FILE");
    cup = loadImage("coffeeCup.png");
    cup.resize(200,0);
    mainText = loadImage("homeText.png");
@@ -23,6 +25,7 @@ class MainMenu{
   
   
   void display(){
+    openFile.display();
     buttons();
     cs1.display();
     cs2.display();
