@@ -3,56 +3,47 @@ class MainMenu{
  PImage mainText;
  CoffeeSteam cs1, cs2;
  Engine e;
- boolean aboutPressed = false;
- Button openFile;
+ Button openFile,about;
  
  
  MainMenu(Engine e_){
    e = e_;
-   openFile = new Button(200,200,100,40,color(30,122,78),color(130,55,20),"OPEN FILE");
+   openFile = new Button(50,200,100,40,color(30,122,78),color(130,55,20),"OPEN FILE",22);
+   about = new Button(50,250,100,40,color(30,122,78),color(130,55,20),"ABOUT",22);
    cup = loadImage("coffeeCup.png");
    cup.resize(200,0);
    mainText = loadImage("homeText.png");
    mainText.resize(300,0);
    cs1 = new CoffeeSteam(300,100,width/3 + 105);
    cs2 = new CoffeeSteam(300,100,width/3 + 92);
-   e.cp5.addButton("About")
-         .setValue(0)
-         .setPosition(100,100)
-         .setSize(200,19);
-         ;
  }
   
   
   void display(){
-    openFile.display();
+    
     buttons();
     cs1.display();
     cs2.display();
     image(cup,width/3,(height/3) * 2);
     textSize(59);
     fill(0);
+    textAlign(LEFT);
     text("COFFEE EDIT",90,80);
-    //image(mainText,20,20);
+    openFile.display();
+    about.display();
   }
   
   
   void buttons(){
-    if(aboutPressed){
+    if(about.clicked){
         e.state = 2;
+    }
+    if(openFile.clicked){
+      e.state = 3;
     }
     
   }
   
-  void About(int theValue){
-    aboutPressed = true;
-    println("PRESSED");
-    
-  }
-  
-  void controlEvent(ControlEvent theEvent) {
-  println(theEvent.getController().getName());
-}
   
   
 }

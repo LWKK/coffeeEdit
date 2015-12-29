@@ -1,10 +1,10 @@
 class Button{
-int x,y,w,h;
+int x,y,w,h,textSize;
 color hoverC,regC,dispC;
 boolean hovering,clicked;
 String text;
 
-Button(int x_,int y_,int w_, int h_,color hover, color reg,String text_){
+Button(int x_,int y_,int w_, int h_,color hover, color reg,String text_,int textS){
   x = x_;
   y = y_;
   regC = reg;
@@ -12,6 +12,7 @@ Button(int x_,int y_,int w_, int h_,color hover, color reg,String text_){
   text = text_;
   w = w_;
   h = h_;
+  textSize = textS;
 }
 
 
@@ -20,7 +21,10 @@ void display(){
   checkClicked();
   fill(dispC);
   rect(x,y,w,h);
-  //text(text,x,y);
+  fill(255);
+  textSize(textSize);
+  textAlign(CENTER,CENTER);
+  text(text,x+w/2,y+h/2);
 }
 
 
