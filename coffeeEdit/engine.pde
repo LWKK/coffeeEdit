@@ -6,7 +6,7 @@ class Engine {
   int currentLine = 0, lettersAcross = (width/textSize) * 2 - 3, state = 1, prevState = 1;
   Cursor c;
   MainMenu mm;
-  ControlP5 cp5;
+ // ControlP5 cp5;
   PApplet sketch;
 
 
@@ -26,7 +26,7 @@ class Engine {
     sketch = theSketch;
     lines.add(new TextLine(this, textSize + 10));
     c = new Cursor(this, 0, textSize+10);
-    cp5 = new ControlP5(sketch);
+    //cp5 = new ControlP5(sketch);
     mm = new MainMenu(this);
     font = createFont("consola.ttf", textSize);
     menuFont = createFont("KGSkinnyLatte.ttf", textSize);
