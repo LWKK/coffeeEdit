@@ -91,11 +91,15 @@ loop();
   
   
   void createNewFile(){
+    String name = "";
     if(!newFileNamed){
       noLoop();
-      String name = JOptionPane.showInputDialog(frame, "What Would You Like To Name Your File?","New File",JOptionPane.PLAIN_MESSAGE);
+      name = JOptionPane.showInputDialog(frame, "What Would You Like To Name Your File?","New File",JOptionPane.PLAIN_MESSAGE);
       newFileNamed = true;
       loop();
     }
+    
+    newFile = createWriter(name);
+    
   }
 }

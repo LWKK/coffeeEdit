@@ -12,9 +12,6 @@ void setup(){
  //orientation(PORTRAIT);
 }
 
-
-
-
 void draw(){
   background(255);
   e.run();
