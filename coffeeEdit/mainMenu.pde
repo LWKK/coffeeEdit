@@ -3,13 +3,14 @@ class MainMenu{
  PImage mainText;
  CoffeeSteam cs1, cs2;
  Engine e;
- Button openFile,about;
+ Button openFile,about,newFile;
  
  
  MainMenu(Engine e_){
    e = e_;
    openFile = new Button(50,200,100,40,color(30,122,78),color(130,55,20),"OPEN FILE",22);
    about = new Button(50,250,100,40,color(30,122,78),color(130,55,20),"ABOUT",22);
+   newFile = new Button(50,300,100,40,color(30,122,78),color(130,55,20),"NEW FILE",22);
    cup = loadImage("coffeeCup.png");
    cup.resize(200,0);
    mainText = loadImage("homeText.png");
@@ -31,6 +32,7 @@ class MainMenu{
     text("COFFEE EDIT",90,80);
     openFile.display();
     about.display();
+    newFile.display();
   }
   
   
@@ -40,6 +42,10 @@ class MainMenu{
     }
     if(openFile.clicked){
       e.state = 3;
+    }
+    
+    if(newFile.clicked){
+     e.state = 5; 
     }
     
   }

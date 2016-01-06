@@ -2,7 +2,7 @@
 
 
 class CoffeeSteam{
-  int xspacing = 2;   // How far apart should each horizontal location be spaced
+  int xspacing = 1;   // How far apart should each horizontal location be spaced
   int w;              // Width of entire wave
   int maxwaves = 4;   // total # of waves to add together
   float theta = 0.0;

@@ -9,6 +9,7 @@ Button(int x_,int y_,int w_, int h_,color hover, color reg,String text_,int text
   y = y_;
   regC = reg;
   dispC = reg;
+  hoverC = hover;
   text = text_;
   w = w_;
   h = h_;
