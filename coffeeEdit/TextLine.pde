@@ -28,6 +28,7 @@ class TextLine {
   }
 
   void display() {
+    textAlign(LEFT,BASELINE);
     textSize(e.textSize);
     fill(0);
     text(letters, 10, y);

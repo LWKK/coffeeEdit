@@ -91,7 +91,7 @@ loop();
   
   
   void createNewFile(){
-    String name = "";
+    String name = "file1.txt";
     if(!newFileNamed){
       noLoop();
       name = JOptionPane.showInputDialog(frame, "What Would You Like To Name Your File?","New File",JOptionPane.PLAIN_MESSAGE);
@@ -100,6 +100,7 @@ loop();
     }
     
     newFile = createWriter(name);
+    state = 4;
     
   }
 }
