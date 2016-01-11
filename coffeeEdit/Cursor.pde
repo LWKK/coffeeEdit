@@ -21,7 +21,11 @@ class Cursor {
     blink();
     setPos();
     if (displayed) {
+      fill(0);
+      stroke(0);
+      strokeWeight(2);
       line(x, y, x, y+e.textSize);
+      println("Displaying");
     }
   }
 

@@ -24,6 +24,7 @@ class TextLine {
         letters += key;
         letterCounter ++;
       }
+      
     }
   }
 
@@ -36,11 +37,16 @@ class TextLine {
 
 
 
-  void newLine() {
+  void handleCurrentLine() {
     if (letterCounter == lettersAcross && keyPressed) {
       e.lines.add(new TextLine(e, y+e.textSize+3));
       e.currentLine ++;
       e.lineCounter++;
     }
+    if(key == BACKSPACE && letters.length() ==0){
+        e.currentLine --;
+        e.lineCounter --;
+        e.lines.remove(this);
+      }
   }
 }

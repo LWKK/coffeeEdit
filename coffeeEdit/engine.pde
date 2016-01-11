@@ -62,7 +62,7 @@ class Engine {
       line.display();
     }
 
-    lines.get(currentLine).newLine();
+    lines.get(currentLine).handleCurrentLine();
   }
 
 
