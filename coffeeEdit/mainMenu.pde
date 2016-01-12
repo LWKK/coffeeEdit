@@ -15,8 +15,8 @@ class MainMenu{
    cup.resize(200,0);
    mainText = loadImage("homeText.png");
    mainText.resize(300,0);
-   cs1 = new CoffeeSteam(300,100,width/3 + 105);
-   cs2 = new CoffeeSteam(300,100,width/3 + 92);
+   cs1 = new CoffeeSteam(((height/3) * 2)+40,100,width/3 + 100);
+   cs2 = new CoffeeSteam(((height/3) * 2)+40,100,width/3 + 92);
  }
   
   
@@ -28,8 +28,8 @@ class MainMenu{
     image(cup,width/3,(height/3) * 2);
     textSize(59);
     fill(0);
-    textAlign(LEFT);
-    text("COFFEE EDIT",90,80);
+    textAlign(CENTER,CENTER);
+    text("COFFEE EDIT",width/2,height/8);
     openFile.display();
     about.display();
     newFile.display();

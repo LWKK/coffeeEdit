@@ -1,16 +1,18 @@
 class Engine {
   PFont font;
   PFont menuFont;
-  int textSize = 50, lineCounter = 1;
+  int textSize = 15, lineCounter = 1;
   ArrayList<TextLine> lines = new ArrayList<TextLine>();
   int currentLine = 0, lettersAcross = (width/textSize) * 2 - 3, state = 1, prevState = 1;
   boolean fileChosen = false,newFileNamed = false;
   Cursor c;
+  FileIO fileIO;
   MainMenu mm;
  // ControlP5 cp5;
   PApplet sketch;
   File file;
   PrintWriter newFile;
+  float actualW = 600,w,h,scaleRatio;
 
 
   /*
@@ -24,8 +26,9 @@ class Engine {
 
   Engine(PApplet theSketch) {
     sketch = theSketch;
-    lines.add(new TextLine(this, textSize + 10));
+    lines.add(new TextLine(this, textSize + 45));
     c = new Cursor(this, 0, textSize+10);
+    fileIO = new FileIO(this,file);
     //cp5 = new ControlP5(sketch);
     mm = new MainMenu(this);
     font = createFont("consola.ttf", textSize);
@@ -35,11 +38,15 @@ class Engine {
 
 
 
+
+
+
   void run() {
     if (state == 4) { 
       textFont(font);
       dispText();
       c.display();
+      fileIO.run();
     }
     if (state == 1) {
       mm.display();
@@ -98,8 +105,8 @@ loop();
       newFileNamed = true;
       loop();
     }
-    
-    newFile = createWriter(name);
+    file = new File(sketchPath("") + name);
+   // newFile = createWriter(name);
     state = 4;
     
   }

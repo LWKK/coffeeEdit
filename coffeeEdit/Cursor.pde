@@ -25,7 +25,6 @@ class Cursor {
       stroke(0);
       strokeWeight(2);
       line(x, y, x, y+e.textSize);
-      println("Displaying");
     }
   }
 

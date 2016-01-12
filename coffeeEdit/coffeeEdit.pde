@@ -7,7 +7,8 @@ Engine e;
 
 void setup(){
  //size(displayWidth,displayHeight);
- size(400,400);
+ //size(400,400);
+ size(600,400);
  e = new Engine(this);
  //orientation(PORTRAIT);
 }

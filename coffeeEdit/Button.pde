@@ -20,6 +20,7 @@ Button(int x_,int y_,int w_, int h_,color hover, color reg,String text_,int text
 void display(){
   checkHover();
   checkClicked();
+  noStroke();
   fill(dispC);
   rect(x,y,w,h);
   fill(255);

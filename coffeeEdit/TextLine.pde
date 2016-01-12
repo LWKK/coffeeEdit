@@ -5,10 +5,8 @@ class TextLine {
 
   TextLine(Engine e_, int y_) {
     e = e_;
-    lettersAcross = (width/e.textSize) * 2 - 3;
+    lettersAcross = ((width/e.textSize) * 2) - 10;
     letterCounter = 0;
-    println(width);
-    println(lettersAcross);
     y = y_;
   }
 
