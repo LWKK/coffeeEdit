@@ -21,6 +21,9 @@ class TextLine {
       } else if (letterCounter < lettersAcross) {
         letters += key;
         letterCounter ++;
+        if(key == TAB){
+         letters += "    "; 
+        }
       }
       
     }
@@ -41,10 +44,16 @@ class TextLine {
       e.currentLine ++;
       e.lineCounter++;
     }
-    if(key == BACKSPACE && letters.length() ==0){
+    if(keyPressed && key == BACKSPACE && letters.length() ==0 && e.lineCounter > 1){
         e.currentLine --;
         e.lineCounter --;
         e.lines.remove(this);
+      }
+      
+      if(keyPressed && key == ENTER){
+        e.lines.add(new TextLine(e, y+e.textSize+3));
+        e.currentLine ++;
+        e.lineCounter++;
       }
   }
 }

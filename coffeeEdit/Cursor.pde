@@ -2,16 +2,17 @@ class Cursor {
   int x, y, startBlink, startDelay, lineClicked; 
   boolean displayed;
   Engine e;
-  int[] cursorSpacing;
+  float[] cursorSpacing;
 
   Cursor(Engine e_, int x_, int y_) {
     x = x_;
     y = y_;
     e = e_;
     startBlink = millis();
-    cursorSpacing = new int[e.lettersAcross+1];
+    cursorSpacing = new float[e.lettersAcross+1];
     for (int i = 0; i < cursorSpacing.length; i ++) {
-      cursorSpacing[i] = i*(e.textSize/2)+ e.textSize/4;
+      //cursorSpacing[i] = i*(e.textSize/2) + e.textSize/4 + 1;
+      cursorSpacing[i] = i * (e.textSize *.49)+10;
     }
   }
 
@@ -23,7 +24,7 @@ class Cursor {
     if (displayed) {
       fill(0);
       stroke(0);
-      strokeWeight(2);
+      strokeWeight(1);
       line(x, y, x, y+e.textSize);
     }
   }
@@ -42,10 +43,10 @@ class Cursor {
   void setPos() {
     if (mousePressed) {
       x = mouseX;
-       y = mouseY;
+      y = mouseY;
 
       if (mouseY > e.textSize*e.lineCounter) {
-        //y = e.lines.get(e.lineCounter-1).y - e.textSize;
+        y = e.lines.get(e.lineCounter-1).y - e.textSize;
       }
       
       
@@ -56,15 +57,26 @@ class Cursor {
   
   
   int closestSpacing(int find){
-    int closest = cursorSpacing[0];
-    int distance = abs(closest-find);
+    float closest = cursorSpacing[0];
+    float distance = abs(closest-find);
     for(int i = 0; i < cursorSpacing.length; i ++){
-      int tempDist = abs(cursorSpacing[i] - find);
+      float tempDist = abs(cursorSpacing[i] - find);
       if(distance > tempDist){
         closest = cursorSpacing[i];
         distance = tempDist;
       }
     }
-    return closest;
+    return int(closest);
   }
+  
+  
+  
+  int findIndex(int cX){
+    int index = 0;
+    
+    
+    
+    return index;
+  }
+  
 }

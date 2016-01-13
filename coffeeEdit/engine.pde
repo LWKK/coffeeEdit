@@ -28,7 +28,7 @@ class Engine {
     sketch = theSketch;
     lines.add(new TextLine(this, textSize + 45));
     c = new Cursor(this, 0, textSize+10);
-    fileIO = new FileIO(this,file);
+    
     //cp5 = new ControlP5(sketch);
     mm = new MainMenu(this);
     font = createFont("consola.ttf", textSize);
@@ -88,7 +88,9 @@ int returnVal = chooser.showOpenDialog(null);
 if (returnVal == JFileChooser.APPROVE_OPTION) 
 {
   fileChosen = true;
+  
   file = chooser.getSelectedFile();
+  fileIO = new FileIO(this,file);
   println("You chose to open this file: " + chooser.getSelectedFile().getName());
 }
 loop();
@@ -108,6 +110,7 @@ loop();
     file = new File(sketchPath("") + name);
    // newFile = createWriter(name);
     state = 4;
+    fileIO = new FileIO(this,file);
     
   }
 }

@@ -5,6 +5,7 @@ class FileIO{
   File file;
   PrintWriter fileSaver;
   DataOutputStream dataOut;
+  boolean saveClicked = false;
   
   FileIO(Engine e_,File file_){
     e = e_;
@@ -15,6 +16,7 @@ class FileIO{
      dataOut = new DataOutputStream(new FileOutputStream(file.getAbsolutePath()));
    } catch (Exception e){
      println("FILE NOT FOUND");
+     println(file.getAbsolutePath());
    }
      
   }
@@ -29,9 +31,17 @@ class FileIO{
    rect(0,0,width,35);
    saveButton.display(); 
    if(saveButton.clicked){
-    saveGoodText(e.lines.toArray(new TextLine[0]), e.file); 
+    saveClicked = true;
    }
+   
+  if(!saveButton.clicked && saveClicked){
+    saveGoodText(e.lines.toArray(new TextLine[0]), e.file); 
+    saveClicked = false;
   }
+  
+  }
+  
+  //saveGoodText(e.lines.toArray(new TextLine[0]), e.file); 
   
   void saveText(TextLine[] lines_){
     
@@ -49,7 +59,8 @@ class FileIO{
     for (TextLine line : lines_) {
        String temp =  line.letters + "\n";
        try{
-         dataOut.writeUTF(temp);
+         //dataOut.writeUTF(temp);
+         dataOut.writeUTF(line.letters);
        }
        
        catch( Exception e){
