@@ -7,6 +7,9 @@ class FileIO{
   DataOutputStream dataOut;
   boolean saveClicked = false;
   
+  
+  PrintWriter out;
+  
   FileIO(Engine e_,File file_){
     e = e_;
     file = file_;
@@ -35,7 +38,8 @@ class FileIO{
    }
    
   if(!saveButton.clicked && saveClicked){
-    saveGoodText(e.lines.toArray(new TextLine[0]), e.file); 
+    //saveGoodText(e.lines.toArray(new TextLine[0]), e.file); 
+    saveWriter(e.lines.toArray(new TextLine[0]), e.file); 
     saveClicked = false;
   }
   
@@ -69,6 +73,25 @@ class FileIO{
        
      }
     
+  }
+  
+  
+  void saveWriter(TextLine[] lines_, File file_){
+      file = file_;
+    for (TextLine line : lines_) {
+       String temp =  line.letters + "\n";
+    
+    try{
+       Files.write(temp, file.getPath(), Charset.forName("UTF-8"));
+    }
+    
+    
+    catch(Exception e){
+     println("FAILED"); 
+      
+    }
+    
+    }
   }
   
   
