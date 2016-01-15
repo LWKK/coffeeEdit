@@ -79,17 +79,10 @@ class FileIO{
   void saveWriter(TextLine[] lines_, File file_){
       file = file_;
     for (TextLine line : lines_) {
-       String temp =  line.letters + "\n";
-    
-    try{
-       Files.write(temp, file.getPath(), Charset.forName("UTF-8"));
-    }
-    
-    
-    catch(Exception e){
-     println("FAILED"); 
-      
-    }
+       String[] temp = new String[1];
+       temp[0] = line.letters + "\n";
+       saveStrings(file.getName(),temp);
+   
     
     }
   }
