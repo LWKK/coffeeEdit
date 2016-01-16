@@ -1,10 +1,12 @@
 class Engine {
   PFont font;
   PFont menuFont;
+  PFont aboutFont;
   int textSize = 15, lineCounter = 1;
   ArrayList<TextLine> lines = new ArrayList<TextLine>();
   int currentLine = 0, lettersAcross = (width/textSize) * 2 - 3, state = 1, prevState = 1;
   boolean fileChosen = false,newFileNamed = false;
+  Button backButton;
   Cursor c;
   FileIO fileIO;
   MainMenu mm;
@@ -27,12 +29,13 @@ class Engine {
   Engine(PApplet theSketch) {
     sketch = theSketch;
     lines.add(new TextLine(this, textSize + 45));
-    c = new Cursor(this, 0, textSize+10);
-    
+    c = new Cursor(this, 10,45);
+    backButton = new Button(5,5,40,30,color(30,122,78),color(0, 102, 102),"BACK",12);
     //cp5 = new ControlP5(sketch);
     mm = new MainMenu(this);
     font = createFont("consola.ttf", textSize);
     menuFont = createFont("KGSkinnyLatte.ttf", textSize);
+    aboutFont = createFont("KasseFLF.ttf",textSize);
     textFont(menuFont);
   }
 
@@ -49,10 +52,21 @@ class Engine {
       fileIO.run();
     }
     if (state == 1) {
+      textFont(menuFont);
       mm.display();
     }
     if (state == 2) {
-      background(0, 255, 0);
+      background(212, 164, 106);
+      backButton.display();
+      textFont(aboutFont);
+      textAlign(CENTER,CENTER);
+      textSize(35);
+      text("Welcome To Coffee Edit",width/2,height/6);
+      textSize(30);
+      text("A Java Source Code Editor",width/2,height/3);
+      textSize(25);
+      text("Made By Lars Kishchuk", width/2,height*.66);
+      if(backButton.clicked)state = 1;
     }
     if(state == 3 && !fileChosen){
       fileChooser();

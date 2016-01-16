@@ -1,5 +1,5 @@
 class Cursor {
-  int x, y, startBlink, startDelay, lineClicked; 
+  int x, y, startBlink, startDelay, lineClicked,index; 
   boolean displayed;
   Engine e;
   float[] cursorSpacing;
@@ -19,6 +19,7 @@ class Cursor {
 
 
   void display() {
+    index = findIndex(x);
     blink();
     setPos();
     if (displayed) {
@@ -72,11 +73,9 @@ class Cursor {
   
   
   int findIndex(int cX){
-    int index = 0;
-    
-    
-    
-    return index;
+    float index = cX / (e.textSize *.49)-2;
+    println(int(index));
+    return int(index);
   }
   
 }

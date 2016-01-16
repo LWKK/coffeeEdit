@@ -2,7 +2,7 @@ class TextLine {
   Engine e;
   int lettersAcross, letterCounter, y;
   String letters = "";
-
+  boolean enterClicked = false;
   TextLine(Engine e_, int y_) {
     e = e_;
     lettersAcross = ((width/e.textSize) * 2) - 10;
@@ -19,8 +19,12 @@ class TextLine {
         letters = letters.substring(0, letters.length()-1);
         letterCounter --;
       } else if (letterCounter < lettersAcross) {
-        letters += key;
+        if(e.c.index == letterCounter)letters += key;
+        else{
+         letters = letters.substring(0,e.c.index) + key + letters.substring(e.c.index,letters.length()); 
+        }
         letterCounter ++;
+        e.c.x +=(e.textSize *0.49);
         if(key == TAB){
          letters += "    "; 
         }
@@ -39,6 +43,8 @@ class TextLine {
 
 
   void handleCurrentLine() {
+    
+    if(keyPressed && key == ENTER) enterClicked = true;
     if (letterCounter == lettersAcross && keyPressed) {
       e.lines.add(new TextLine(e, y+e.textSize+3));
       e.currentLine ++;
@@ -50,10 +56,11 @@ class TextLine {
         e.lines.remove(this);
       }
       
-      if(keyPressed && key == ENTER){
+      if(enterClicked && !keyPressed){
         e.lines.add(new TextLine(e, y+e.textSize+3));
         e.currentLine ++;
         e.lineCounter++;
+        enterClicked = false;
       }
   }
 }
