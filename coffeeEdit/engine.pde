@@ -105,6 +105,9 @@ if (returnVal == JFileChooser.APPROVE_OPTION)
   
   file = chooser.getSelectedFile();
   fileIO = new FileIO(this,file);
+  fileIO.fileToLines(file);
+  println("CALLING FN");
+  state = 4;
   println("You chose to open this file: " + chooser.getSelectedFile().getName());
 }
 loop();
@@ -123,8 +126,8 @@ loop();
     }
     file = new File(sketchPath("") + name);
    // newFile = createWriter(name);
-    state = 4;
     fileIO = new FileIO(this,file);
     
+    state = 4;
   }
 }

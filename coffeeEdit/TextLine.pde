@@ -3,11 +3,21 @@ class TextLine {
   int lettersAcross, letterCounter, y;
   String letters = "";
   boolean enterClicked = false;
+  
+  
   TextLine(Engine e_, int y_) {
     e = e_;
     lettersAcross = ((width/e.textSize) * 2) - 10;
     letterCounter = 0;
     y = y_;
+  }
+  
+  TextLine(Engine e_, int y_, String letters_){
+   e = e_;
+   lettersAcross = ((width/e.textSize) * 2) - 10;
+    y = y_;
+    letters = letters_;
+    letterCounter = letters.length();
   }
 
 
@@ -27,7 +37,7 @@ class TextLine {
           e.c.index++;
         }
         else{
-          print(e.c.index+1 + " " + letterCounter + "\n"); 
+          //print(e.c.index+1 + " " + letterCounter + "\n"); 
           String temp = letters;
          //letters = letters.substring(0,e.c.index+1) + key + letters.substring(e.c.index,letters.length()); 
         }

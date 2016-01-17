@@ -88,6 +88,27 @@ class FileIO{
   }
   
   
+  void fileToLines(File file_){
+    String[] lines = loadStrings(file.getName());
+    println("PUTTING TO LINES");
+    for(int i = 0; i <lines.length; i ++){
+      if(i == 0){
+        e.lines.add(new TextLine(e, e.textSize + 45,lines[i]));
+        e.currentLine++;
+        e.lineCounter ++;
+        println("Line 1"+lines[i]);
+      }
+      else{
+        e.lines.add(new TextLine(e, i*+e.textSize+3,lines[i]));
+        e.currentLine ++;
+        e.lineCounter++;
+        println("Line x" + lines[i]);
+      }
+    }
+    println(e.lineCounter);
+  }
+  
+  
   
   
   
