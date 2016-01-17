@@ -74,7 +74,7 @@ class Cursor {
   
   int findIndex(int cX){
     float index = cX / (e.textSize *.49)-2;
-    println(int(index));
+    //println(int(index));
     return int(index);
   }
   

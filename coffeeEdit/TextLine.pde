@@ -14,17 +14,25 @@ class TextLine {
 
 
   void handleKeys() {
+    println(e.c.index + " " + letterCounter);
     if( e.lines.get(e.currentLine) == this) {
       if (key == BACKSPACE && letters.length() > 0) {
         letters = letters.substring(0, letters.length()-1);
         letterCounter --;
       } else if (letterCounter < lettersAcross) {
-        if(e.c.index == letterCounter)letters += key;
-        else{
-         letters = letters.substring(0,e.c.index) + key + letters.substring(e.c.index,letters.length()); 
+        if(e.c.index == letterCounter){
+          letters += key;
+          letterCounter ++;
+          e.c.x +=(e.textSize *0.49);
+          e.c.index++;
         }
-        letterCounter ++;
-        e.c.x +=(e.textSize *0.49);
+        else{
+          print(e.c.index+1 + " " + letterCounter + "\n"); 
+          String temp = letters;
+         //letters = letters.substring(0,e.c.index+1) + key + letters.substring(e.c.index,letters.length()); 
+        }
+        //letterCounter ++;
+        //e.c.x +=(e.textSize *0.49);
         if(key == TAB){
          letters += "    "; 
         }
