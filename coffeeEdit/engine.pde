@@ -5,7 +5,7 @@ class Engine {
   int textSize = 15, lineCounter = 1;
   ArrayList<TextLine> lines = new ArrayList<TextLine>();
   int currentLine = 0, lettersAcross = (width/textSize) * 2 - 3, state = 1, prevState = 1;
-  boolean fileChosen = false,newFileNamed = false;
+  boolean fileChosen = false,newFileNamed = false,fileChooserOpen = false;
   Button backButton;
   Cursor c;
   FileIO fileIO;
@@ -69,7 +69,11 @@ class Engine {
       if(backButton.clicked)state = 1;
     }
     if(state == 3 && !fileChosen){
+      fileChooserOpen = true;
+      if(fileChooserOpen){
       fileChooser2();
+      }
+      fileChooserOpen = false;
     }
     if(state == 5){
       createNewFile();
@@ -116,21 +120,18 @@ loop();
   
   
   void fileChooser2(){
-    noLoop();
-   JFileChooser fileChooser = new JFileChooser();
-fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-int result = fileChooser.showOpenDialog(null);
-if (result == JFileChooser.APPROVE_OPTION) {
-  fileChosen = true;
-    file = fileChooser.getSelectedFile();
-    fileIO = new FileIO(this,file);
-    state = 4;
-} 
-
-loop();
-    
-    
+     selectInput("Select a file to process:", "fileSelected");  
   }
+  
+  void fileSelected(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    println("User selected " + selection.getAbsolutePath());
+    file = selection;
+    state = 4;
+  }
+}
   
   
   
