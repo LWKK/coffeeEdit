@@ -17,6 +17,7 @@ class Cursor {
   }
 
 
+// Use textWidth() fn for spacing
 
   void display() {
     index = findIndex(x);

@@ -69,7 +69,7 @@ class Engine {
       if(backButton.clicked)state = 1;
     }
     if(state == 3 && !fileChosen){
-      fileChooser();
+      fileChooser2();
     }
     if(state == 5){
       createNewFile();
@@ -105,13 +105,31 @@ if (returnVal == JFileChooser.APPROVE_OPTION)
   
   file = chooser.getSelectedFile();
   fileIO = new FileIO(this,file);
-  fileIO.fileToLines(file);
+ // fileIO.fileToLines(file);
   println("CALLING FN");
   state = 4;
   println("You chose to open this file: " + chooser.getSelectedFile().getName());
 }
 loop();
  
+  }
+  
+  
+  void fileChooser2(){
+    noLoop();
+   JFileChooser fileChooser = new JFileChooser();
+fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+int result = fileChooser.showOpenDialog(null);
+if (result == JFileChooser.APPROVE_OPTION) {
+  fileChosen = true;
+    file = fileChooser.getSelectedFile();
+    fileIO = new FileIO(this,file);
+    state = 4;
+} 
+
+loop();
+    
+    
   }
   
   
