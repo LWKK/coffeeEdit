@@ -37,7 +37,7 @@ class Engine {
     menuFont = createFont("KGSkinnyLatte.ttf", textSize);
     aboutFont = createFont("KasseFLF.ttf",textSize);
     textFont(menuFont);
-    println("TEXT WIDTH" + textWidth('i'));
+    //println("TEXT WIDTH" + textWidth('i'));
   }
 
 
@@ -112,8 +112,6 @@ if (returnVal == JFileChooser.APPROVE_OPTION)
   
   file = chooser.getSelectedFile();
   fileIO = new FileIO(this,file);
- // 
-  println("CALLING FN");
   state = 4;
   println("You chose to open this file: " + chooser.getSelectedFile().getName());
 }
@@ -134,7 +132,7 @@ loop();
     println("User selected " + selection.getAbsolutePath());
     file = selection;
     fileIO = new FileIO(this,file);
-    //fileIO.fileToLines(file);
+    fileIO.fileToLines(file);
     state = 4;
   }
 }

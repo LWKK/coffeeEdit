@@ -18,7 +18,7 @@ class FileIO{
    // fileSaver.createWriter(file);
    saveButton = new Button(5,5,30,30,color(30,122,78),color(0, 102, 102),"SAVE",12);
    try{
-     dataOut = new DataOutputStream(new FileOutputStream(file.getAbsolutePath()));
+     //dataOut = new DataOutputStream(new FileOutputStream(file.getAbsolutePath()));
    } catch (Exception e){
      println("FILE NOT FOUND");
      println(file.getAbsolutePath());

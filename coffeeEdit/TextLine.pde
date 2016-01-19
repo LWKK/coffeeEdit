@@ -24,30 +24,34 @@ class TextLine {
 
 
   void handleKeys() {
-    println("Cursor  " + e.c.index);
+   // println("Cursor  " + e.c.index);
     if( e.lines.get(e.currentLine) == this) {
       if (key == BACKSPACE && letters.length() > 0) {
         letters = letters.substring(0, letters.length()-1);
         letterCounter --;
         e.c.index --;
-        e.c.x -= (e.textSize *e.fontRatio);
+        if(letters.length() > 1){
+        e.c.x -= textWidth(char(letters.charAt(letters.length()-1)));
+        }
       } else if (letterCounter < lettersAcross && !(key == CODED)){
         if(e.c.index == letterCounter){
           letters += key;
           letterCounter ++;
           e.c.index ++;
-          println("ADDING TO INDEX");
-          e.c.x += (e.textSize *e.fontRatio);
+          e.c.x += (textWidth(key));
           
         }
         else{
          letters = letters.substring(0,e.c.index) + key + letters.substring(e.c.index,letters.length()); 
+         letterCounter ++;
+          e.c.index ++;
+          e.c.x += (textWidth(char(key)));
         }
-        //letterCounter ++;
-        if(key == TAB){
+        
+      }
+      if(key == TAB){
          letters += "    "; 
         }
-      }
       
     }
   }

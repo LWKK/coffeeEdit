@@ -54,7 +54,6 @@ class Cursor {
         y = e.lines.get(e.lineCounter-1).y - e.textSize;
       }
       
-      
      x = closestSpacing(mouseX);
      index = findIndex(x);
      println("Cursor  " + e.c.index);
