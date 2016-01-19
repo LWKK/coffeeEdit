@@ -42,6 +42,7 @@ class MainMenu{
     }
     if(openFile.clicked){
       e.state = 3;
+      e.fileChooserOpen = true;
     }
     
     if(newFile.clicked){

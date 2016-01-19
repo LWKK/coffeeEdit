@@ -23,3 +23,8 @@ void draw(){
 void keyPressed(){
   e.handleAllKeys();
 }
+
+void fileSelected(File selection){
+ e.handleFileSelected(selection); 
+  
+}

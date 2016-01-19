@@ -24,25 +24,26 @@ class TextLine {
 
 
   void handleKeys() {
-    println(e.c.index + " " + letterCounter);
+    println("Cursor  " + e.c.index);
     if( e.lines.get(e.currentLine) == this) {
       if (key == BACKSPACE && letters.length() > 0) {
         letters = letters.substring(0, letters.length()-1);
         letterCounter --;
-      } else if (letterCounter < lettersAcross) {
+        e.c.index --;
+        e.c.x -= (e.textSize *e.fontRatio);
+      } else if (letterCounter < lettersAcross && !(key == CODED)){
         if(e.c.index == letterCounter){
           letters += key;
           letterCounter ++;
-          e.c.x +=(e.textSize *0.49);
-          e.c.index++;
+          e.c.index ++;
+          println("ADDING TO INDEX");
+          e.c.x += (e.textSize *e.fontRatio);
+          
         }
         else{
-          //print(e.c.index+1 + " " + letterCounter + "\n"); 
-          String temp = letters;
-         //letters = letters.substring(0,e.c.index+1) + key + letters.substring(e.c.index,letters.length()); 
+         letters = letters.substring(0,e.c.index) + key + letters.substring(e.c.index,letters.length()); 
         }
         //letterCounter ++;
-        //e.c.x +=(e.textSize *0.49);
         if(key == TAB){
          letters += "    "; 
         }
@@ -52,6 +53,7 @@ class TextLine {
   }
 
   void display() {
+    textFont(e.font);
     textAlign(LEFT,BASELINE);
     textSize(e.textSize);
     fill(0);
@@ -67,6 +69,8 @@ class TextLine {
       e.lines.add(new TextLine(e, y+e.textSize+3));
       e.currentLine ++;
       e.lineCounter++;
+      e.c.x = 10;
+      e.c.y += y+e.textSize+3;
     }
     if(keyPressed && key == BACKSPACE && letters.length() ==0 && e.lineCounter > 1){
         e.currentLine --;
@@ -78,6 +82,8 @@ class TextLine {
         e.lines.add(new TextLine(e, y+e.textSize+3));
         e.currentLine ++;
         e.lineCounter++;
+        e.c.x = 10;
+        e.c.y += y+e.textSize+3;
         enterClicked = false;
       }
   }

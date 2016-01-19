@@ -12,7 +12,9 @@ class Cursor {
     cursorSpacing = new float[e.lettersAcross+1];
     for (int i = 0; i < cursorSpacing.length; i ++) {
       //cursorSpacing[i] = i*(e.textSize/2) + e.textSize/4 + 1;
-      cursorSpacing[i] = i * (e.textSize *.49)+10;
+      cursorSpacing[i] = i * (e.textSize *e.fontRatio)+1; // kinda works add 10 bc when priting it starts 10 in
+      //textSize(e.textSize);
+      //cursorSpacing[i] = i * (textWidth('R'))+10;
     }
   }
 
@@ -20,7 +22,7 @@ class Cursor {
 // Use textWidth() fn for spacing
 
   void display() {
-    index = findIndex(x);
+    //index = findIndex(x);
     blink();
     setPos();
     if (displayed) {
@@ -46,6 +48,7 @@ class Cursor {
     if (mousePressed) {
       x = mouseX;
       y = mouseY;
+      
 
       if (mouseY > e.textSize*e.lineCounter) {
         y = e.lines.get(e.lineCounter-1).y - e.textSize;
@@ -53,7 +56,8 @@ class Cursor {
       
       
      x = closestSpacing(mouseX);
-      
+     index = findIndex(x);
+     println("Cursor  " + e.c.index);
     }
   }
   
@@ -74,7 +78,7 @@ class Cursor {
   
   
   int findIndex(int cX){
-    float index = cX / (e.textSize *.49)-2;
+    float index = cX / (e.textSize *e.fontRatio)-1;
     //println(int(index));
     return int(index);
   }

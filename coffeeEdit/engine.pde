@@ -14,7 +14,7 @@ class Engine {
   PApplet sketch;
   File file;
   PrintWriter newFile;
-  float actualW = 600,w,h,scaleRatio;
+  float actualW = 600,w,h,scaleRatio,fontRatio = 0.44;
 
 
   /*
@@ -33,10 +33,11 @@ class Engine {
     backButton = new Button(5,5,40,30,color(30,122,78),color(0, 102, 102),"BACK",12);
     //cp5 = new ControlP5(sketch);
     mm = new MainMenu(this);
-    font = createFont("consola.ttf", textSize);
+    font = createFont("AndaleMono", textSize);
     menuFont = createFont("KGSkinnyLatte.ttf", textSize);
     aboutFont = createFont("KasseFLF.ttf",textSize);
     textFont(menuFont);
+    println("TEXT WIDTH" + textWidth('i'));
   }
 
 
@@ -68,11 +69,13 @@ class Engine {
       text("Made By Lars Kishchuk", width/2,height*.66);
       if(backButton.clicked)state = 1;
     }
+    
     if(state == 3 && !fileChosen){
-      fileChooserOpen = true;
+     
       if(fileChooserOpen){
       fileChooser2();
       }
+      
       fileChooserOpen = false;
     }
     if(state == 5){
@@ -109,7 +112,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION)
   
   file = chooser.getSelectedFile();
   fileIO = new FileIO(this,file);
- // fileIO.fileToLines(file);
+ // 
   println("CALLING FN");
   state = 4;
   println("You chose to open this file: " + chooser.getSelectedFile().getName());
@@ -121,14 +124,17 @@ loop();
   
   void fileChooser2(){
      selectInput("Select a file to process:", "fileSelected");  
+     fileChooserOpen = false;
   }
   
-  void fileSelected(File selection) {
+  void handleFileSelected(File selection) {
   if (selection == null) {
     println("Window was closed or the user hit cancel.");
   } else {
     println("User selected " + selection.getAbsolutePath());
     file = selection;
+    fileIO = new FileIO(this,file);
+    //fileIO.fileToLines(file);
     state = 4;
   }
 }
