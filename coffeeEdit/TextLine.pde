@@ -27,25 +27,27 @@ class TextLine {
    // println("Cursor  " + e.c.index);
     if( e.lines.get(e.currentLine) == this) {
       if (key == BACKSPACE && letters.length() > 0) {
+        if(letters.length() > 1){
+        e.c.x -= textWidth(letters.charAt(letters.length()-1))-2;
+        println(char(letters.charAt(letters.length()-1)));
+        }
         letters = letters.substring(0, letters.length()-1);
         letterCounter --;
         e.c.index --;
-        if(letters.length() > 1){
-        e.c.x -= textWidth(char(letters.charAt(letters.length()-1)));
-        }
+        
       } else if (letterCounter < lettersAcross && !(key == CODED)){
         if(e.c.index == letterCounter){
           letters += key;
           letterCounter ++;
           e.c.index ++;
-          e.c.x += (textWidth(key));
+          e.c.x += (textWidth(key) + 2);
           
         }
         else{
          letters = letters.substring(0,e.c.index) + key + letters.substring(e.c.index,letters.length()); 
          letterCounter ++;
           e.c.index ++;
-          e.c.x += (textWidth(char(key)));
+          e.c.x += (textWidth(key)+2);
         }
         
       }
