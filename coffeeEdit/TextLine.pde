@@ -75,11 +75,16 @@ class TextLine {
       e.lineCounter++;
       e.c.x = 10;
       e.c.y += y+e.textSize+3;
+      e.c.index = 0;
     }
     if(keyPressed && key == BACKSPACE && letters.length() ==0 && e.lineCounter > 1){
         e.currentLine --;
         e.lineCounter --;
+        e.c.y -= y+e.textSize+3;
+        e.c.index = e.lines.get(e.lineCounter-1).letterCounter;
+        e.c.x = int(e.lines.get(e.lineCounter-1).letterCounter * (e.textSize *e.fontRatio));
         e.lines.remove(this);
+        
       }
       
       if(enterClicked && !keyPressed){
@@ -89,6 +94,7 @@ class TextLine {
         e.c.x = 10;
         e.c.y += y+e.textSize+3;
         enterClicked = false;
+        e.c.index = 0;
       }
   }
 }

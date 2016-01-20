@@ -34,6 +34,10 @@ class FileIO{
     noStroke();
    fill(160, 168, 171);
    rect(0,0,width,35);
+   textAlign(CENTER,CENTER);
+   fill(0);
+   textSize(25);
+   text(e.file.getName(),width/2,15);
    saveButton.display(); 
    if(saveButton.clicked){
     saveClicked = true;
@@ -98,16 +102,19 @@ class FileIO{
         e.lines.add(new TextLine(e, e.textSize + 45,lines[i]));
         e.currentLine++;
         e.lineCounter ++;
-        println("Line 1"+lines[i]);
       }
       else{
         e.lines.add(new TextLine(e, i*+e.textSize+3,lines[i]));
         e.currentLine ++;
         e.lineCounter++;
-        println("Line x" + lines[i]);
+        
       }
     }
-    println(e.lineCounter);
+    e.c.x = int(e.lines.get(e.currentLine-1).letterCounter*(e.textSize *e.fontRatio));
+    e.c.index =e.lines.get(e.currentLine-1).letterCounter;
+    e.c.y = e.lineCounter *(e.textSize+3) + 45;
+
+
   }
   
   
