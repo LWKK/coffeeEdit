@@ -40,12 +40,12 @@ class FileIO {
   // Function that saves the actual lines. Taken a TextLine class array and a file to write to as parameters. 
   void saveWriter(TextLine[] lines_, File file_) {
     file = file_;
-    // Iterate through the array of objects and write each line to the file
-    for (TextLine line : lines_) {
-      String[] temp = new String[1];
-      temp[0] = line.letters + "\n";
-      saveStrings(file.getName(), temp);
+    // Iterate through the array of objects, put the line into a string array, then write that array to the file
+    String[] theLines = new String[lines_.length];
+    for (int i = 0; i < theLines.length; i ++) {
+      theLines[i] = lines_[i].letters;
     }
+    saveStrings(file.getName(), theLines);
   }
 
 
@@ -62,7 +62,7 @@ class FileIO {
         e.lineCounter ++;
       } else {
         // If other line, y value is based on textSize
-        e.lines.add(new TextLine(e, i*+e.textSize+3, lines[i]));
+        e.lines.add(new TextLine(e, i*+e.textSize+48, lines[i]));
         e.currentLine ++;
         e.lineCounter++;
       }

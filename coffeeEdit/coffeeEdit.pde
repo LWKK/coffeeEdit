@@ -2,11 +2,20 @@
  Coffee Edit
  A Java Source Code Editor
  
- 
+ Open a file (.txt only) or create a new one (also .txt)
+ New files will be saved to this sketch's folder
 
 
 
+Known Bugs:
 
+Cursor is buggy on where it displays. Mostly due to difference between Capital and lowercase letters and where to spacing in between them is.
+Cursor still works to type and delete mid string
+Cursor is also buggy because textWidth() is not working properly
+If you type really fast while pressing enter alot the program may lag, causing an error in moving the cursor after the key is pressed, resulting in an error that causes a crash
+
+
+Enjoy!
 
 */
 

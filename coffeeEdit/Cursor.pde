@@ -24,7 +24,6 @@ class Cursor {
 
   // Function to display the cursor and call other functions 
   void display() {
-    //index = findIndex(x);
     blink();
     setPos();
     if (displayed) {
@@ -63,7 +62,7 @@ class Cursor {
       index = findIndex(x);
     }
     // constrain the index to prevent out of bounds in the TextLine class. 
-    index = constrain(index, 0, 100);
+    index = constrain(index, 0, e.lines.get(e.currentLine).letterCounter);
   }
 
 
