@@ -28,8 +28,9 @@ class TextLine {
     if( e.lines.get(e.currentLine) == this) {
       if (key == BACKSPACE && letters.length() > 0) {
         if(letters.length() > 1){
-        e.c.x -= textWidth(letters.charAt(letters.length()-1))-2;
-        println(char(letters.charAt(letters.length()-1)));
+        //e.c.x -= textWidth(letters.charAt(letters.length()-1))-2;
+        //println(char(letters.charAt(letters.length()-1)));
+        e.c.x = int(textWidth(letters)) + 12;
         }
         letters = letters.substring(0, letters.length()-1);
         letterCounter --;
@@ -40,14 +41,18 @@ class TextLine {
           letters += key;
           letterCounter ++;
           e.c.index ++;
-          e.c.x += (textWidth(key) + 2);
+          //e.c.x += (textWidth(key) + 2);
+          e.c.x = int(textWidth(letters)) + 12;
+         
           
         }
         else{
-         letters = letters.substring(0,e.c.index) + key + letters.substring(e.c.index,letters.length()); 
+          if(letterCounter > 0)letters = letters.substring(0,e.c.index) + key + letters.substring(e.c.index,letters.length()); 
+         else letters += key;
          letterCounter ++;
           e.c.index ++;
-          e.c.x += (textWidth(key)+2);
+          //e.c.x += (textWidth(key)+2);
+          e.c.x = int(textWidth(letters)) + 12;
         }
         
       }

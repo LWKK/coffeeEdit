@@ -1,125 +1,75 @@
-// http://stackoverflow.com/questions/731365/reading-and-displaying-data-from-a-txt-file  Reading from file
+// Class that handles all work with the files including saving and opening
 
-class FileIO{
- 
+
+class FileIO {
   Button saveButton;
   Engine e;
   File file;
-  PrintWriter fileSaver;
-  DataOutputStream dataOut;
   boolean saveClicked = false;
-  
-  
-  PrintWriter out;
-  
-  FileIO(Engine e_,File file_){
+
+
+  // Constructor
+  FileIO(Engine e_, File file_) {
     e = e_;
     file = file_;
-   // fileSaver.createWriter(file);
-   saveButton = new Button(5,5,30,30,color(30,122,78),color(0, 102, 102),"SAVE",12);
-   try{
-     //dataOut = new DataOutputStream(new FileOutputStream(file.getAbsolutePath()));
-   } catch (Exception e){
-     println("FILE NOT FOUND");
-     println(file.getAbsolutePath());
-   }
-     
+    saveButton = new Button(5, 5, 30, 30, color(30, 122, 78), color(0, 102, 102), "SAVE", 12);
   }
-  
-  
-  
-  
-  
-  void run(){
+
+
+  // Function that runs the class. handles saving if the save button is pressed
+  void run() {
     noStroke();
-   fill(160, 168, 171);
-   rect(0,0,width,35);
-   textAlign(CENTER,CENTER);
-   fill(0);
-   textSize(25);
-   text(e.file.getName(),width/2,15);
-   saveButton.display(); 
-   if(saveButton.clicked){
-    saveClicked = true;
-   }
-   
-  if(!saveButton.clicked && saveClicked){
-    //saveGoodText(e.lines.toArray(new TextLine[0]), e.file); 
-    saveWriter(e.lines.toArray(new TextLine[0]), e.file); 
-    saveClicked = false;
-  }
-  
-  }
-  
-  //saveGoodText(e.lines.toArray(new TextLine[0]), e.file); 
-  
-  void saveText(TextLine[] lines_){
-    
-     for (TextLine line : lines_) {
-       String temp =  line.letters + "\n";
-       fileSaver.println(temp);
-     }
-     fileSaver.flush();
-     fileSaver.close();
-    
-  }
-  
-  void saveGoodText(TextLine[] lines_, File file_){
-    file = file_;
-    for (TextLine line : lines_) {
-       String temp =  line.letters + "\n";
-       try{
-         //dataOut.writeUTF(temp);
-         dataOut.writeUTF(line.letters);
-       }
-       
-       catch( Exception e){
-        println("FAILED TO SAVE FILE"); 
-       }
-       
-     }
-    
-  }
-  
-  
-  void saveWriter(TextLine[] lines_, File file_){
-      file = file_;
-    for (TextLine line : lines_) {
-       String[] temp = new String[1];
-       temp[0] = line.letters + "\n";
-       saveStrings(file.getName(),temp);
-   
-    
+    fill(160, 168, 171);
+    rect(0, 0, width, 35);
+    textAlign(CENTER, CENTER);
+    fill(0);
+    textSize(25);
+    text(e.file.getName(), width/2, 15);
+    saveButton.display(); 
+    if (saveButton.clicked) {
+      saveClicked = true;
+    }
+    // Calls save function if button is pressed. Boolean prevents saving multiple times in one click
+    if (!saveButton.clicked && saveClicked) {
+      saveWriter(e.lines.toArray(new TextLine[0]), e.file); 
+      saveClicked = false;
     }
   }
-  
-  
-  void fileToLines(File file_){
+
+
+  // Function that saves the actual lines. Taken a TextLine class array and a file to write to as parameters. 
+  void saveWriter(TextLine[] lines_, File file_) {
+    file = file_;
+    // Iterate through the array of objects and write each line to the file
+    for (TextLine line : lines_) {
+      String[] temp = new String[1];
+      temp[0] = line.letters + "\n";
+      saveStrings(file.getName(), temp);
+    }
+  }
+
+
+// A function that will take a file the user has opened and transform all lines into TextLine objects
+  void fileToLines(File file_) {
+    // Loading each line into an array of strings
     String[] lines = loadStrings(file.getName());
-    println("PUTTING TO LINES");
-    for(int i = 0; i <lines.length; i ++){
-      if(i == 0){
-        e.lines.add(new TextLine(e, e.textSize + 45,lines[i]));
+    // Iterate through the array and create new TextLine objects for each line. Calling secondary constructor for TextLine
+    for (int i = 0; i <lines.length; i ++) {
+      // If it is the first line, move its y value down more so it starts in the correct place
+      if (i == 0) {
+        e.lines.add(new TextLine(e, e.textSize + 45, lines[i]));
         e.currentLine++;
         e.lineCounter ++;
-      }
-      else{
-        e.lines.add(new TextLine(e, i*+e.textSize+3,lines[i]));
+      } else {
+        // If other line, y value is based on textSize
+        e.lines.add(new TextLine(e, i*+e.textSize+3, lines[i]));
         e.currentLine ++;
         e.lineCounter++;
-        
       }
     }
+    // Setting the cursor position based on the last line
     e.c.x = int(e.lines.get(e.currentLine-1).letterCounter*(e.textSize *e.fontRatio));
     e.c.index =e.lines.get(e.currentLine-1).letterCounter;
     e.c.y = e.lineCounter *(e.textSize+3) + 45;
-
-
   }
-  
-  
-  
-  
-  
-  
 }
